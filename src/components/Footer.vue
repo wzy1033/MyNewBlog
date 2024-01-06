@@ -40,11 +40,12 @@
     <!-- 年份 -->
     <div class="copyright">
       <div v-if="curYear === config.blogStartYear">
-        &copy; {{ curYear }} Designed By {{ config.name }}{{config.username}}.&nbsp;
+        &copy; {{ curYear }} Designed By {{ config.name
+        }}{{ config.username }}.&nbsp;
       </div>
       <div v-else>
-        &copy; {{ config.blogStartYear }} - {{ curYear }}
-        Designed By {{ config.name }}{{config.username}}.&nbsp;
+        &copy; {{ config.blogStartYear }} - {{ curYear }} Designed By
+        {{ config.name }}{{ config.username }}.&nbsp;
       </div>
     </div>
   </div>
@@ -77,7 +78,7 @@ export default {
   display: flex;
   align-items: center;
   padding: 0 1vw;
-  font-family: 'PingFang light';
+  font-family: "PingFang light";
   font-size: 16px;
   color: #bbbbbb;
 }
@@ -87,6 +88,7 @@ export default {
   justify-content: space-evenly;
   width: 50vw;
   z-index: 2;
+  margin-top: -30px;
   .link {
     border-radius: 999px;
     background-color: #363636;
@@ -135,6 +137,7 @@ export default {
   z-index: 1;
   //overflow: hidden;
   bottom: 0px;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
 .info {
   height: 16vh;
@@ -176,6 +179,7 @@ export default {
   z-index: 1;
   position: relative;
   overflow: hidden;
+  background-color: #fbfbfb;
   .usernameLogo {
     font-size: 35px;
     font-weight: 900;

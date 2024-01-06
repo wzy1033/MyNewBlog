@@ -1,5 +1,5 @@
 {
-  "name": "personal-blog",
+  "name": "VueYoungBlog",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,10 +9,13 @@
   },
   "dependencies": {
     "animate.css": "^4.1.1",
+    "axios": "^1.6.4",
     "boxicons": "^2.0.5",
+    "colorthief": "^2.4.0",
     "core-js": "^3.6.5",
     "markdown-it-highlightjs": "^3.2.0",
     "markdown-it-link-attributes": "^3.0.0",
+    "rgbaster": "^2.1.1",
     "vue": "^2.6.11",
     "vue-router": "^3.2.0",
     "vuesax": "^4.0.1-alpha.24"

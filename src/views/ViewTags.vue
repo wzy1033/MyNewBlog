@@ -36,6 +36,7 @@ export default {
   name: 'ViewTags',
   mounted: function () {
     this.changeTitle('Tags')
+    console.log(this.tags)
   },
   components: {
     Nothing

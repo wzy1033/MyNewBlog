@@ -1,7 +1,9 @@
 <template>
   <div class="container">
-    <h1 class="text-center">Tag <code>{{ tagName }}</code></h1>
-    <hr>
+    <h1 class="text-center">
+      Tag <code>{{ tagName }}</code>
+    </h1>
+    <hr />
     <br />
     <vs-row id="row">
       <vs-col
@@ -20,27 +22,31 @@
 </template>
 
 <script>
-import PostCard from '@/components/PostCard.vue'
+import PostCard from "@/components/PostCard.vue";
 
 export default {
-  name: 'ViewTag',
+  name: "ViewTag",
   components: {
     PostCard
   },
-  data: function () {
+  data: function() {
     return {
       tagName: this.$route.params.tag
-    }
+    };
   },
   computed: {
-    tag: function () {
-      for (var i = 0; i < this.tags.length; i++) { // match current tag
+    tag: function() {
+      for (var i = 0; i < this.tags.length; i++) {
+        // match current tag
         if (this.tags[i].name === this.tagName) {
-          return this.tags[i]
+          return this.tags[i];
         }
       }
-      return null
+      return null;
     }
+  },
+  mounted() {
+    console.log(this.tag);
   }
-}
+};
 </script>

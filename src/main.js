@@ -2,6 +2,9 @@ import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
 import Vuesax from "vuesax";
+import axios from 'axios';
+
+
 import "vuesax/dist/vuesax.css";
 import "boxicons";
 import "boxicons/css/boxicons.min.css";
@@ -15,6 +18,7 @@ console.log(
 Vue.config.productionTip = false;
 
 Vue.use(Vuesax, {});
+Vue.prototype.$axios = axios;
 
 Vue.mixin({
   methods: {

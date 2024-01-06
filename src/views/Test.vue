@@ -2,9 +2,8 @@
   <div class="root">
     <div class="site-header">
       <div class="out">
-        <transition name="inner" appear>
-          <div class="inner"></div>
-        </transition>
+        <div class="inner1"></div>
+        <div class="inner2"></div>
       </div>
     </div>
   </div>
@@ -17,31 +16,25 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-
-.inner-enter-active {
-  animation: shrinkKeyframes 1.5s;
-  animation-timing-function: cubic-bezier(0.62, 0.21, 0.25, 1);
-}
-
-@keyframes shrinkKeyframes {
-  0% {
-    transform: scale(2);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
-
 .out {
   width: 500px;
   height: 500px;
+  margin-left: 20px;
   background-color: aqua;
   overflow: hidden;
-  .inner {
+  position: relative;
+  .inner1 {
     width: 450px;
     height: 450px;
     background-color: blue;
+    position: absolute;
+  }
+  .inner2 {
+    width: 200px;
+    height: 200px;
+    background-color: red;
+    z-index: 2;
+    position: relative;
   }
 }
-
 </style>
