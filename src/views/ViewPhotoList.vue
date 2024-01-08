@@ -1,45 +1,53 @@
 <template>
   <div class="container" :class="{ dark: $store.getters.currentTheme }">
-    <div class="outer">
-      <div class="grid-4_xs-1_sm-2_md-2" v-if="tags.length">
-        <div v-for="(tag, index) in tags" :key="index" class="col">
-          <router-link :to="`/tags/${tag.name}`">
-            <vs-card type="3" class="center">
-              <template #title>
-                <h3 class="title">{{ tag.name }}</h3>
-              </template>
-              <template #text>
-                <p>
-                  {{ tag.posts.length }} post{{
-                    `${tag.posts.length !== 1 ? "s" : ""}`
-                  }}
-                </p>
-              </template>
-            </vs-card>
-          </router-link>
+    <div class="outer" v-if="allPhotoList.length">
+      <div class="list" v-for="(list, index) in allPhotoList" :key="index">
+        <div class="article">
+          {{ list.title }}
+        </div>
+        <div class="des">
+          {{ list.description }}
+        </div>
+        <div class="grid grid-3_xs-1_sm-2_md-2">
+          <Photo
+            :key="index"
+            v-for="(photo, index) in list.photos"
+            class="colu"
+            :photo="photo"
+          />
         </div>
       </div>
-      <Nothing v-else />
     </div>
+    <Nothing v-else />
   </div>
 </template>
 
 <script>
 import Nothing from "@/components/Nothing.vue";
+import Photo from "@/components/Photo.vue";
 
 export default {
-  name: "ViewTags",
-  mounted() {},
+  name: "ViewPhotoList",
   components: {
-    Nothing
-  }
+    Nothing,
+    Photo
+  },
+  data() {
+    return {
+      allPosts: this.getConfig("posts.json").posts,
+      curPage: 1,
+      config: this.getConfig().config,
+      allPhotoList: this.getConfig("photos.json").photoLists
+    };
+  },
+  mounted() {
+    console.log(this.allPhotoList);
+  },
+  methods: {}
 };
 </script>
 
 <style lang="scss" scoped>
-.title{
-
-}
 .dark.container {
   background-color: #18171d;
   .outer {
@@ -50,8 +58,6 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  min-height: 100vh;
   width: 100%;
   position: relative;
   padding: 30px 0px;
@@ -59,14 +65,14 @@ export default {
   background-color: #f7f9fe;
   .outer {
     border-radius: 16px;
-    //box-shadow: 0 8px 16px -4px #2c2d300c;
-    //border: 1px solid #e3e8f7;
-    //background-color: #fff;
+    box-shadow: 0 8px 16px -4px #2c2d300c;
+    border: 1px solid #e3e8f7;
+    background-color: #fff;
     padding: 40px 60px;
     padding-bottom: 50px;
-    width: 90%;
+    width: 70%;
     max-width: 1160px;
-    .list {
+    .list{
       margin-top: 30px;
     }
     .article {
@@ -88,7 +94,6 @@ export default {
         margin-top: 2vw;
       }
       .center {
-
       }
     }
     .center {

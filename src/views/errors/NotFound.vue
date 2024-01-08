@@ -13,7 +13,7 @@
 <script>
 export default {
   name: 'NotFound',
-  mounted: function () {
+  mounted () {
     this.changeTitle('404')
   }
 }

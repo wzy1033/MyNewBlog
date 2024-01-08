@@ -17,7 +17,7 @@ export default {
   components: {
     About: About.vue.component
   },
-  mounted: function () {
+  mounted () {
     this.changeTitle('About')
   }
 }

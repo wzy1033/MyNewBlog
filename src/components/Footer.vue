@@ -54,7 +54,7 @@
 <script>
 export default {
   name: "Footer",
-  data: function() {
+  data() {
     return {
       contacts: this.getConfig().contacts,
       config: this.getConfig().config,
@@ -63,7 +63,7 @@ export default {
     };
   },
   methods: {
-    getYear: function() {
+    getYear() {
       return new Date().getFullYear();
     }
   }
@@ -181,6 +181,7 @@ export default {
   overflow: hidden;
   background-color: #fbfbfb;
   .usernameLogo {
+    color: #000;
     font-size: 35px;
     font-weight: 900;
     font-family: "Aqum-2-Classic-2";

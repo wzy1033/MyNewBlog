@@ -42,9 +42,15 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+
 @font-face {
   font-family: "iconfont";
   src: url("../fonts/iconfont.ttf");
+}
+
+@font-face {
+  font-family: "icondandy";
+  src: url("../fonts/icondandy.ttf");
 }
 
 .iconfont {
@@ -155,8 +161,8 @@ blockquote {
 }
 
 [vs-theme="dark"] {
-  background-color: rgba(30, 32, 35, 1) !important;
-  color: rgba(255, 255, 255, 1) !important;
+  background-color: #18171d !important;
+  color: #f7f9fe !important;
 }
 
 [vs-theme="dark"] hr {

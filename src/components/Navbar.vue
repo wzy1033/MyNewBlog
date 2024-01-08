@@ -2,7 +2,7 @@
   <div>
     <vs-navbar
       class="navbar"
-      :class="{ dark: dark }"
+      :class="{ dark: dark, onshow: onshow }"
       shadow-scroll
       fixed
       center-collapsed
@@ -91,12 +91,8 @@ export default {
           url: "/posts"
         },
         {
-          name: "项目",
-          url: "/projects"
-        },
-        {
-          name: "友链",
-          url: "/links"
+          name: "照片",
+          url: "/photolist"
         },
         {
           name: "标签",
@@ -114,7 +110,7 @@ export default {
     };
   },
   methods: {
-    changeTheme: function() {
+    changeTheme() {
       if (this.dark) {
         document
           .getElementsByTagName("body")[0]
@@ -126,10 +122,13 @@ export default {
           .setAttribute("vs-theme", "dark");
         this.dark = true;
       }
+      //console.log(this.dark);
+      this.$store.dispatch("toggleTheme");
+      //console.log(this.$store.getters.currentTheme);
     }
   },
   computed: {
-    active: function() {
+    active() {
       const cur = this.$route.path;
       var ret = {
         name: null,
@@ -140,6 +139,9 @@ export default {
       }
       return ret;
     }
+  },
+  props: {
+    onshow: false
   }
 };
 </script>
@@ -171,5 +173,13 @@ export default {
   }
 
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.dark.onshow {
+  background-color: rgba(30, 32, 35, 1) !important;
+}
+
+:not(.dark).onshow {
+  background-color: white !important;
 }
 </style>

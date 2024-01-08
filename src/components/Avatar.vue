@@ -11,7 +11,7 @@
 <script>
 export default {
   name: 'Avatar',
-  data: function () {
+  data () {
     return {
       config: this.getConfig().config
     }

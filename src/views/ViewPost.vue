@@ -1,22 +1,25 @@
 <template>
-  <div class="root">
+  <div class="root" :class="{ dark: $store.getters.currentTheme }">
     <!-- 图片 -->
-    <header class="post-bg">
-      <div class="cover-outer" :style="{ backgroundColor: coverBgColor }">
-        <div class="cover-container">
-          <img :src="post.cover" class="cover" />
+    <header class="post-bg ">
+      <div class="cover-outer " :style="{ backgroundColor: coverBgColor }">
+        <div class="cover-container ">
+          <transition name="bg" appear>
+            <img :src="post.cover" class="cover" />
+          </transition>
         </div>
       </div>
       <!-- 信息 -->
       <div class="post-header" :style="{ color: coverTextColor }">
         <div class="title">{{ post.title }}</div>
         <div class="tags">
-          <router-link
+          <span
             v-for="(item, index) in post.tags"
             :key="index"
             class="tag"
-            :to="`/tags/${item}`"
-            >{{ item }}</router-link
+            @click="enterTag(item)"
+          >
+            {{ item }}</span
           >
         </div>
         <div class="info">
@@ -32,8 +35,11 @@
     </header>
 
     <!-- 文章内容 -->
-    <article class="post">
-      <router-view></router-view>
+    <article
+      class="post-container"
+      :class="{ dark: $store.getters.currentTheme }"
+    >
+      <router-view class="post"></router-view>
     </article>
     <!-- 前后 -->
   </div>
@@ -42,6 +48,7 @@
 <script>
 import axios from "axios";
 import ColorThief from "colorthief";
+import "animate.css";
 
 export default {
   name: "ViewPost",
@@ -68,6 +75,9 @@ export default {
     };
   },
   methods: {
+    enterTag(tag) {
+      this.$router.push("/tags/" + tag);
+    },
     getPost() {
       // because of markdown file rendering, can't use the triditional dynamic route matching
       this.postId = this.$route.path.split("posts/")[1];
@@ -100,12 +110,14 @@ export default {
       axios
         .get(`${this.post.cover}?x-oss-process=image/average-hue`)
         .then(response => {
-          this.coverBgColor = `#${response.data.RGB.substring(2)}`;
+          console.log(response.data);
+          this.coverBgColor = `#${response.data.RGB.slice(2)}`;
         })
         .catch(error => {
-          console.error("请求失败", error);
+          console.error("请求失败了", error);
         });
       this.getCoverTextColor(this.coverBgColor);
+      console.log(this.coverBgColor);
     },
     getCoverTextColor(bgColor) {
       let r = parseInt(bgColor.slice(1, 3), 16);
@@ -113,7 +125,6 @@ export default {
       let b = parseInt(bgColor.slice(5, 7), 16);
       let brightness = (r * 299 + g * 587 + b * 114) / 1000;
       this.coverTextColor = brightness > 128 ? "#363636" : "#ffffff";
-      console.log(this.coverTextColor);
     }
     // getCoverBgColor2() {
     //   let imgDom = document.querySelector(".cover");
@@ -125,7 +136,7 @@ export default {
     //   };
     // }
   },
-  mounted: function() {
+  mounted() {
     this.getPost();
     this.getCoverBgColor1();
     console.log(this.post);
@@ -139,12 +150,33 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.bg-enter-active {
+  animation: zoomKeyframes 1.5s;
+  animation-timing-function: cubic-bezier(0.62, 0.21, 0.25, 1);
+}
+
+@keyframes zoomKeyframes {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.root.dark {
+  background-color: #18171d;
+}
 .root {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
   overflow: hidden;
+  background-color: #f7f9fe;
+
   .post-bg {
     overflow: hidden;
     height: 60vmin;
@@ -191,18 +223,28 @@ export default {
       .title {
         font-size: 50px;
         font-weight: 700;
+        min-height: 3em;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 2; //多行在这里修改数字即可
+        -webkit-box-orient: vertical;
       }
       .tags {
         display: flex;
-        width: 500px;
+        width: 190px;
         align-items: center;
         justify-content: space-between;
         transition: all 0.3s ease-out 0s;
-        margin-top: 20px;
+        position: relative;
+        //left: 5px;
         .tag {
           color: #fff;
-          border-radius: 12px;
-          padding: 10px;
+          background: linear-gradient(to right, #fff, #fff) no-repeat left
+            bottom;
+          background-size: 0 1px;
+          transition: 0.7s;
+          opacity: 0.8;
           &::before {
             font-family: "iconfont";
             margin-right: 0.5em;
@@ -210,9 +252,8 @@ export default {
           }
 
           &:hover {
-            //transform: scale(1.03);
-            background-color: #fff;
-            color: #363636;
+            opacity: 1;
+            background-size: 100px 1px;
             cursor: pointer;
           }
         }
@@ -238,7 +279,7 @@ export default {
           background-color: rgba(255, 255, 255, 0.05);
           box-shadow: rgba(38, 38, 38, 0.1) 0px 4.8px 24px 0px;
           transition: all 0.3s ease-out 0s;
-          opacity: 0.7;
+          opacity: 0.8;
           &:hover {
             opacity: 1;
           }
@@ -278,18 +319,35 @@ export default {
       }
     }
   }
-  .post {
-    width: 80vw;
-    border-radius: 14px 14px 0 0;
-    //box-shadow: rgba(44, 45, 48, 0.047) 0px 8px 16px -4px;
-    img {
+
+  .post-container {
+    margin-top: 20px;
+    margin-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 90vw;
+    border-radius: 16px;
+    box-shadow: 0 8px 16px -4px #2c2d300c;
+    border: 1px solid #e3e8f7;
+    padding-top: 40px;
+    background-color: #fff;
+    .post {
+      width: 80vw;
+      border-radius: 14px 14px 0 0;
+      img {
+        display: block;
+        margin: 0 auto;
+      }
+    }
+    .frontmatter-markdown img {
       display: block;
       margin: 0 auto;
     }
   }
-  .frontmatter-markdown img {
-    display: block;
-    margin: 0 auto;
+  .post-container.dark {
+    background-color: #1b1c20;
+    box-shadow: rgba(0, 0, 0, 0.314) 0px 8px 16px -4px;
   }
 }
 </style>

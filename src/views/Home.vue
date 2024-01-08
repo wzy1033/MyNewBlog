@@ -42,13 +42,13 @@ export default {
     PostCard,
     Nothing
   },
-  data: function() {
+  data() {
     return {
       posts: this.getConfig("posts.json").posts,
       config: this.getConfig().config
     };
   },
-  mounted: function() {
+  mounted() {
     this.changeTitle("Home");
   }
 }

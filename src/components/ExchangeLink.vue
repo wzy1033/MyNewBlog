@@ -18,7 +18,7 @@
 export default {
   name: 'ExchangeLink',
   props: ['title', 'desc', 'link'],
-  mounted: function () {
+  mounted () {
     this.changeTitle('Links')
   }
 }

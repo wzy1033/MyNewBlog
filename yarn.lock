@@ -9380,7 +9380,7 @@ vue-template-es2015-compiler@^1.9.0:
   resolved "https://registry.npm.taobao.org/vue-template-es2015-compiler/download/vue-template-es2015-compiler-1.9.1.tgz"
   integrity sha1-HuO8mhbsv1EYvjNLsV+cRvgvWCU=
 
-"vue@^2 || ^3.0.0-0", vue@^2.6.11:
+"vue@^2 || ^3.0.0-0", vue@^2.0.0, vue@^2.6.11:
   version "2.6.12"
   resolved "https://registry.npm.taobao.org/vue/download/vue-2.6.12.tgz"
   integrity sha1-9evU+mvShpQD4pqJau1JBEVskSM=
@@ -9391,6 +9391,11 @@ vuesax@^4.0.1-alpha.24:
   integrity sha1-L7l6yOTz1HliLS3GtJjl5X1ESV0=
   dependencies:
     vue-router "^3.3.4"
+
+vuex@^3.6.2:
+  version "3.6.2"
+  resolved "https://registry.npmmirror.com/vuex/-/vuex-3.6.2.tgz"
+  integrity sha512-ETW44IqCgBpVomy520DT5jf8n0zoCac+sxWnn+hMe/CzaSejb/eVw2YToiXYX+Ex/AuHHia28vWTq4goAexFbw==
 
 warning@^4.0.1:
   version "4.0.3"

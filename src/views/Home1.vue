@@ -15,10 +15,16 @@
       </transition>
       <div class="home-container">
         <div class="welcome">
-          <div class="welcome-text-1 animate__animated animate__fadeInUp" :style="{ animationDelay: '0.1s' }">
+          <div
+            class="welcome-text-1 animate__animated animate__fadeInUp"
+            :style="{ animationDelay: '0.1s' }"
+          >
             Hi, 欢迎来到我的小站
           </div>
-          <h2 class="welcome-text-2 animate__animated animate__fadeInUp" :style="{ animationDelay: '0.2s' }">
+          <h2
+            class="welcome-text-2 animate__animated animate__fadeInUp"
+            :style="{ animationDelay: '0.2s' }"
+          >
             感谢你在人海中发现了我
           </h2>
         </div>
@@ -67,7 +73,7 @@ export default {
   name: "Home1",
   data() {
     return {
-      posts: this.getConfig("newPosts.json").posts,
+      posts: this.getConfig("posts.json").posts.slice(0,3),
       config: this.getConfig().config,
       curImgIndex: -1,
       showImg: 0
@@ -202,7 +208,6 @@ export default {
   }
 }
 
-
 .animate__animated {
   animation-duration: 1.5s;
   animation-timing-function: cubic-bezier(0.62, 0.21, 0.25, 1);
@@ -236,10 +241,11 @@ export default {
   }
   .backGroundImg {
     position: absolute;
-    width: 100%;
-    height: 100%;
-    max-width: 100vw;
-    max-height: 100vh;
+    height: 100vh;
+    //width: 100%;
+    //height: 100%;
+    //max-width: 100vw;
+    //max-height: 100vh;
     overflow: hidden;
   }
   .home-container {

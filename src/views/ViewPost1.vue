@@ -39,7 +39,7 @@ export default {
     PostNavBtn,
     PostTags
   },
-  data: function () {
+  data () {
     return {
       postId: this.$route.path.split('posts/')[1],
       posts: this.getConfig('posts.json').posts,
@@ -64,7 +64,7 @@ export default {
     }
   },
   methods: {
-    getPost: function () {
+    getPost () {
       // because of markdown file rendering, can't use the triditional dynamic route matching
       this.postId = this.$route.path.split('posts/')[1]
       const curPostIdx = this.posts.findIndex((post) => post.id === this.postId)
@@ -90,7 +90,7 @@ export default {
       }
     }
   },
-  mounted: function () {
+  mounted () {
     this.getPost()
   },
   watch: {

@@ -26,7 +26,7 @@ import Nothing from '@/components/Nothing.vue'
 
 export default {
   name: 'Links',
-  data: function () {
+  data () {
     return {
       links: this.getConfig('links.json').links
     }

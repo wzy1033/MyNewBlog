@@ -7,7 +7,7 @@
 <script>
 export default {
   name: 'Nothing',
-  data: function () {
+  data () {
     return {
       config: this.getConfig().config
     }

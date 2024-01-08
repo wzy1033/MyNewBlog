@@ -37,7 +37,7 @@ export default {
   props: [
     'post'
   ],
-  data: function () {
+  data () {
     return {
       config: this.getConfig().config
     }

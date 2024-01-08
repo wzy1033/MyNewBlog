@@ -1,9 +1,9 @@
 import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
+import store from "./store";
 import Vuesax from "vuesax";
-import axios from 'axios';
-
+import axios from "axios";
 
 import "vuesax/dist/vuesax.css";
 import "boxicons";
@@ -22,7 +22,7 @@ Vue.prototype.$axios = axios;
 
 Vue.mixin({
   methods: {
-    changeTitle: function(title) {
+    changeTitle(title) {
       let Config = null;
       try {
         Config = require("@/../posts/data/config.json");
@@ -31,7 +31,7 @@ Vue.mixin({
       }
       document.title = `${title} - ${Config.config.blogTitle}`;
     },
-    getConfig: function(name = "config.json") {
+    getConfig(name = "config.json") {
       let Config = null;
       try {
         Config = require(`@/../posts/data/${name}`);
@@ -42,7 +42,7 @@ Vue.mixin({
     }
   },
   computed: {
-    tags: function() {
+    tags() {
       let Posts = null;
       try {
         Posts = require("@/../posts/data/posts.json");
@@ -75,11 +75,26 @@ Vue.mixin({
   }
 });
 
+router.beforeEach((to, from, next) => {
+  // 在这里检查你的条件，决定是否隐藏 Navbar 和 Footer
+  const hideName = ["ViewPhoto"];
+  if (hideName.includes(to.name)) {
+    // 当前路由需要隐藏 Navbar 和 Footer
+    document.getElementById("app").classList.add("hide-navbar-footer");
+  } else {
+    // 当前路由不需要隐藏 Navbar 和 Footer
+    document.getElementById("app").classList.remove("hide-navbar-footer");
+  }
+
+  next();
+});
+
 router.afterEach((to, from, next) => {
   window.scrollTo(0, 0);
 });
 
 new Vue({
   router,
+  store,
   render: h => h(App)
 }).$mount("#app");

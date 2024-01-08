@@ -36,7 +36,7 @@ import Nothing from '@/components/Nothing.vue'
 export default {
   name: 'Contacts',
   computed: {
-    contacts: function () {
+    contacts () {
       return this.getConfig().contacts
     }
   },

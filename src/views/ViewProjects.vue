@@ -58,12 +58,12 @@ export default {
     ProjectDes: ProjectDes.vue.component,
     Nothing
   },
-  data: function () {
+  data () {
     return {
       projects: this.getConfig('projects.json').projects
     }
   },
-  mounted: function () {
+  mounted () {
     this.changeTitle('Projects')
   }
 }
