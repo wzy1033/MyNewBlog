@@ -95,16 +95,16 @@ export default {
           url: "/photolist"
         },
         {
+          name: "音乐",
+          url: "/music"
+        },
+        {
           name: "标签",
           url: "/tags"
         },
         {
           name: "关于",
           url: "/about"
-        },
-        {
-          name: "测试",
-          url: "/test"
         }
       ]
     };

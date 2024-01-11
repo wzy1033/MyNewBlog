@@ -1,14 +1,20 @@
 <template>
-  <div class="container" :class="{dark:$store.getters.currentTheme}">
+  <div class="container" :class="{ dark: $store.getters.currentTheme }">
     <div class="outer" v-if="allPosts.length">
-      <div class="article">
-        文章<span class="len">{{ getPosts().length }}</span>
+      <div class="header-container">
+        <div class="article">
+          文章<span class="len">{{ getPosts().length }}</span>
+        </div>
+        <vs-button class="addNew" size="small" @click="addNew"
+          >新增文章</vs-button
+        >
       </div>
       <div class="grid grid-3_xs-1_sm-2_md-2">
         <div
           :key="index"
           v-for="(post, index) in getPosts()"
-          class="col center"
+          class="col center animate__animated animate__fadeInUp"
+          :style="{ animationDelay: `${0.1 * index}s` }"
         >
           <PostCard class="card" :post="post" />
         </div>
@@ -29,6 +35,7 @@
 <script>
 import PostCard from "@/components/PostCard.vue";
 import Nothing from "@/components/Nothing.vue";
+import "animate.css";
 
 export default {
   name: "ViewPosts",
@@ -57,15 +64,18 @@ export default {
       } catch (e) {
         return [];
       }
+    },
+    addNew() {
+      this.$router.push("/addnewpost");
     }
   }
 };
 </script>
 
 <style lang="scss" scoped>
-.dark.container{
+.dark.container {
   background-color: #18171d;
-  .outer{
+  .outer {
     background-color: #1b1c20;
   }
 }
@@ -86,17 +96,31 @@ export default {
     padding: 40px 40px;
     padding-bottom: 50px;
     width: 75%;
-    .article{
-      font-size: 35px;
-      position: relative;
-      left: 10px;
-      .len{
-        font-size: 18px;
+    position: relative;
+    .header-container {
+      display: flex;
+      align-items: center;
+      .article {
+        font-size: 35px;
         position: relative;
-        bottom: 1em;
-        color: #afafaf;
+        left: 10px;
+        .len {
+          font-size: 18px;
+          position: relative;
+          bottom: 1em;
+          color: #afafaf;
+        }
       }
     }
+    .addNew {
+      width: 80px;
+      height: 36px;
+      position: relative;
+      display: inline-block;
+      left: 20px;
+      font-size: 14px;
+    }
+
     .grid {
       .col {
         display: flex;
@@ -107,10 +131,6 @@ export default {
           margin-top: 1.5vw;
         }
       }
-      .center {
-      }
-    }
-    .center {
     }
     .con-pagination {
       margin-top: 10px;

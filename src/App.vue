@@ -74,4 +74,7 @@ export default {
   display: none;
 }
 
+.hide-footer .footer-bar {
+  display: none;
+}
 </style>

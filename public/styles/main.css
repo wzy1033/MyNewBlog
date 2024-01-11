@@ -15,6 +15,7 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
 @font-face {
   font-family: "PingFang SC";
   src: url("../fonts/PingFang SC.ttf");
@@ -42,10 +43,14 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-
 @font-face {
   font-family: "iconfont";
   src: url("../fonts/iconfont.ttf");
+}
+
+@font-face {
+  font-family: "iconfont2";
+  src: url("../fonts/iconfont2.woff");
 }
 
 @font-face {
@@ -91,7 +96,6 @@ hr {
   border-color: #eef2f5;
   margin-bottom: 10px;
 }
-
 
 code {
   font-size: 90%;

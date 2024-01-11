@@ -1,18 +1,18 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
-import Home1 from "../views/Home1.vue";
 import ViewPost from "../views/ViewPost.vue";
 import ViewTag from "../views/ViewTag.vue";
 import About from "../views/About.vue";
 import ViewTags from "../views/ViewTags.vue";
 import ViewProjects from "../views/ViewProjects.vue";
-import Links from "../views/Links.vue";
 import Test from "../views/Test.vue";
 import ViewPosts from "../views/ViewPosts.vue";
 import ViewPhoto from "../views/ViewPhoto.vue";
 import ViewPhotoList from "../views/ViewPhotoList.vue";
 import NotFound from "../views/errors/NotFound.vue";
+import Music from "../views/Music.vue";
+import AddNewPost from "../views/AddNewPost.vue";
 
 const children = [];
 
@@ -45,8 +45,8 @@ const routes = [
   },
   {
     path: "/",
-    name: "Home1",
-    component: Home1
+    name: "Home",
+    component: Home
   },
   {
     path: "/posts",
@@ -86,11 +86,6 @@ const routes = [
     component: ViewProjects
   },
   {
-    path: "/links",
-    name: "Links",
-    component: Links
-  },
-  {
     path: "/Test",
     name: "Test",
     component: Test
@@ -104,6 +99,16 @@ const routes = [
     path: "/photolist",
     name: "photolist",
     component: ViewPhotoList
+  },
+  {
+    path: "/music",
+    name: "music",
+    component: Music
+  },
+  {
+    path: "/addnewpost",
+    name: "addnewpost",
+    component: AddNewPost
   }
 ];
 

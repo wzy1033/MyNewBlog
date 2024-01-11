@@ -12,7 +12,8 @@
           <Photo
             :key="index"
             v-for="(photo, index) in list.photos"
-            class="colu"
+            class="colu animate__animated animate__fadeInUp"
+            :style="{ animationDelay: `${0.1 * index}s` }"
             :photo="photo"
           />
         </div>
@@ -25,6 +26,7 @@
 <script>
 import Nothing from "@/components/Nothing.vue";
 import Photo from "@/components/Photo.vue";
+import "animate.css";
 
 export default {
   name: "ViewPhotoList",
@@ -72,7 +74,7 @@ export default {
     padding-bottom: 50px;
     width: 70%;
     max-width: 1160px;
-    .list{
+    .list {
       margin-top: 30px;
     }
     .article {

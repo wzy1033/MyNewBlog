@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>间谍过家家</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="./css/in.css" />
+    <style type="text/css">
+      @import url("css/style.css");
+      a:hover {
+        font-size: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div style="position: absolute;right: 30px;">
+      <h1><em>间谍过家家</em></h1>
+      <nav>
+        <h1>SPY×FAMILY</h1>
+      </nav>
+    </div>
+    <div id="mask">
+      <div class="center">
+        <h2 class="title"></h2>
+        <!-- 图片 -->
+        <img :src="imgArr[index]" alt="" />
+        <!-- 左箭头 -->
+        <!-- <a href="javascript:void(0)" v-show="index!=0" @click="prev" class="left">
+        <img src="./images/prev.png" alt="" />
+      </a> -->
+        <a href="javascript:void(0)" v-if="index!=0" @click="prev" class="left">
+          <img src="./images/prev.png" alt="" />
+        </a>
+        <!-- 右箭头 -->
+        <a
+          href="javascript:void(0)"
+          v-show="index<imgArr.length-1"
+          @click="next"
+          class="right"
+        >
+          <img src="./images/next.png" alt="" />
+        </a>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+      var app = new Vue({
+        el: "#mask",
+        data: {
+          imgArr: [
+            "./images/02.jpg",
+            "./images/03.jpg",
+            "./images/04.jpg",
+            "./images/05.jpg",
+          ],
+          index: 0,
+        },
+        methods: {
+          prev: function() {
+            this.index--;
+          },
+          next: function() {
+            this.index++;
+          },
+        },
+      });
+    </script>
+    <ul class="nav">
+      <li><a href="index.html">首页</a></li>
+      <li><a href="blog.html">班级日志</a></li>
+      <li><a href="photo.html">班级相册</a></li>
+      <li><a href="work.html">同学作品</a></li>
+      <li><a href="message.html">留言板</a></li>
+      <li><a href="about.html">关于我们</a></li>
+    </ul>
+  </body>
+</html>

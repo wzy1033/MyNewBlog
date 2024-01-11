@@ -2,7 +2,8 @@
   <div class="container" :class="{ dark: $store.getters.currentTheme }">
     <div class="outer">
       <div class="grid-4_xs-1_sm-2_md-2" v-if="tags.length">
-        <div v-for="(tag, index) in tags" :key="index" class="col">
+        <div v-for="(tag, index) in tags" :key="index" class="col animate__animated animate__fadeInUp"
+        :style="{ animationDelay: `${0.1 * index}s` }" >
           <router-link :to="`/tags/${tag.name}`">
             <vs-card type="3" class="center">
               <template #title>
@@ -26,6 +27,8 @@
 
 <script>
 import Nothing from "@/components/Nothing.vue";
+import "animate.css";
+
 
 export default {
   name: "ViewTags",
@@ -43,7 +46,6 @@ export default {
 .dark.container {
   background-color: #18171d;
   .outer {
-    background-color: #1b1c20;
   }
 }
 .container {

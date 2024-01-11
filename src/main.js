@@ -4,7 +4,9 @@ import router from "./router";
 import store from "./store";
 import Vuesax from "vuesax";
 import axios from "axios";
+import ElementUI from 'element-ui';
 
+import 'element-ui/lib/theme-chalk/index.css';
 import "vuesax/dist/vuesax.css";
 import "boxicons";
 import "boxicons/css/boxicons.min.css";
@@ -18,6 +20,7 @@ console.log(
 Vue.config.productionTip = false;
 
 Vue.use(Vuesax, {});
+Vue.use(ElementUI);
 Vue.prototype.$axios = axios;
 
 Vue.mixin({
@@ -84,6 +87,15 @@ router.beforeEach((to, from, next) => {
   } else {
     // 当前路由不需要隐藏 Navbar 和 Footer
     document.getElementById("app").classList.remove("hide-navbar-footer");
+  }
+
+  const hideFooterName = ["music"];
+  if (hideFooterName.includes(to.name)) {
+    // 当前路由需要隐藏 Navbar 和 Footer
+    document.getElementById("app").classList.add("hide-footer");
+  } else {
+    // 当前路由不需要隐藏 Navbar 和 Footer
+    document.getElementById("app").classList.remove("hide-footer");
   }
 
   next();
